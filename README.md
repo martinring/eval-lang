@@ -32,11 +32,11 @@ soundness type system
   * Ad-Hoc polymorphism through type classes
   * Automatic derivation of all type classes
 
-## Eval is bootstrapped!
+## Optimized Language Core
 
-The **eval** compiler is completely written in **eval**. Thanks to the
-expressitivity of the **eval** programming language, the compiler consists of
-just *0.001 KLOC*. See `evalc.eval`.
+What further differentiates **eval** from other mainstream languages, is that
+we are able to maintain on par expressitivity and computational universality
+while optimizing the language core to eliminate declarations of all kinds.
 
 ## Standard Library
 
@@ -52,11 +52,20 @@ As well as three type classes `ApplicativeFunctor`, `Monad`, `Monoid`.
 In addition there exists one object `eval` of type `String -> IO ()`. The
 function evaluates the provided String as a javascript program.
 
-## Optimized Language Core
+## Eval is bootstrapped!
 
-What further differentiates **eval** from other mainstream languages, is that
-we are able to maintain on par expressitivity and computational universality
-while optimizing the language core to eliminate declarations of all kinds.
+The **eval** compiler is completely written in **eval**. Bootstrapping a 
+compiler hase several advantages (Source: Wikipedia):
+
+- it is a non-trivial test of the language being compiled, and as such is a form of dogfooding.
+- compiler developers only need to know the language being compiled.
+- compiler development can be done in the higher level language being compiled.
+- improvements to the compiler's back-end improve not only general purpose programs but also the compiler itself.
+- it is a comprehensive consistency check as it should be able to reproduce its own object code.
+
+Thanks to the
+expressitivity of the **eval** programming language, the compiler consists of
+just *0.001 KLOC*. See `evalc.eval` to get an idea of advanced programming in eval.
 
 ## Hello World
 
