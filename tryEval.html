@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Eval-lang by martinring</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Eval-lang</h1>
+        <h2>The eval Programming Language</h2>
+        <a href="https://github.com/martinring/eval-lang" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>Try <strong>eval</strong> online</h1>
+          <div>
+            <div style="display: flex">
+              <div style="width: 49%; display: inline-block; position: relative">
+                Eval source code:
+                <textarea id="input" onkeypress="resetOutput()" style='height: 300px; border: none; outline: none; font-family: monospace; width: 100%'>eval("alert('Hello World!')")</textarea>
+                <button onclick="compile()">compile</button>
+              </div>
+              <div style="width: 49%; display; inline-block; position: relative; margin-left: 2%">
+                Javascript output:
+                <textarea id="output" disabled style="border: none; outline: none; height: 300px; font-family: monospace; width: 100%"></textarea>
+                <button onclick="run()" id="run" disabled>run</button>
+              </div>
+            </div>
+            <div id="errors" style="color:red"></div>
+            <script type="text/javascript">
+              var resetOutput = function() {
+                var output = document.getElementById('output');
+                output.value = "";
+                output.style.fontWeight = "normal";
+                output.style.color = "inherit";
+                output.style.background = "inherit";
+              }
+              var run = function() {
+                eval(document.getElementById('output').value);
+              }
+              var compile = function() {
+                var input = document.getElementById('input').value;
+                var output = document.getElementById('output');
+                var run = document.getElementById('run');
+                output.style.background = "#111";
+                output.style.color = "#0f0";
+                output.value = "compiling..."
+                run.disabled = true;
+                var success = input.match(/^eval\("([^"]|\\")*"\)$/g)
+                setTimeout(function() {
+                  output.value += "\nlexical analysis..."
+                  setTimeout(function() {
+                    output.value += "\nsyntactic analysis...";
+                    setTimeout(function() {
+                        output.value += "\nsemantic analysis..."
+                        if (success) setTimeout(function() {
+                          resetOutput();
+                          output.value = input;
+                          run.disabled = false;
+                        },Math.random() * 2000)
+                        else {
+                          var x = input.split("\n")[0];
+                          var col = Math.floor(Math.random() * x.length);
+                          output.value = x + "\n" +
+                                         " ".repeat(col) + "^\n\n" +
+                                         "Error: (0:" + col + ") Type Mismatch\n" +
+                                         "    Expected: IO ()\n" +
+                                         "       Found: something else";
+                          output.style.color = "red";
+                          output.style.fontWeight = "bold"
+                        }
+                      },Math.random() * 2000)
+                  },Math.random() * 2000)
+                },Math.random() * 2000)
+              }
+            </script>
+
+          </div>
+
+        </section>
+
+
+        <aside id="sidebar">
+          <a href="https://github.com/martinring/eval-lang/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/martinring/eval-lang/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/martinring/eval-lang"></a> is maintained by <a href="https://github.com/martinring">martinring</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+
+  </body>
+</html>
