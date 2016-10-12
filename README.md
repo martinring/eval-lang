@@ -7,7 +7,7 @@ for state of the art projects in the field of web technology.
 
 - **Statically Typed**
 
-  As opposed to many Mainstream languages like Java, C#, C++, etc. for which
+  As opposed to many mainstream languages like Java, C#, C++, etc. for which
   soundness of the type system cannot be proven, eval has a verifiably sound **and** complete
   but yet flexible static type system, which is strictly more powerful than
   Hindley-Milner type systems and features:
@@ -54,7 +54,7 @@ function evaluates the provided String as a javascript program.
 
 ## Eval is bootstrapped!
 
-The **eval** compiler is completely written in **eval**. Bootstrapping a 
+The **eval** compiler is completely written in **eval**. Bootstrapping a
 compiler hase several advantages (Source: Wikipedia):
 
 - it is a non-trivial test of the language being compiled, and as such is a form of dogfooding.
