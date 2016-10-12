@@ -1,0 +1,1 @@
+eval("if (source.match(/^eval\(\"([^\"]|\\\\\")*\"\)$/g)) output=source; else throw '[0,0]: Type Mismatch: Expected IO () but found something else'")
