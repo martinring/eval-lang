@@ -33,6 +33,8 @@ for state of the art projects in the field of web technology.
   * Automatic derivation of all type classes
   * Type signatures can include proof obligations which are checked by the compiler.
 
+## [Try **eval** online!!](https://martinring.github.io/eval-lang/tryEval.html)
+
 ## Optimized Language Core
 
 What further differentiates **eval** from other mainstream languages, is that
