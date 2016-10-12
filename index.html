@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Eval-lang by martinring</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Eval-lang</h1>
+        <h2>The eval Programming Language</h2>
+        <a href="https://github.com/martinring/eval-lang" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="the-eval-programming-language-10" class="anchor" href="#the-eval-programming-language-10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The <strong>eval</strong> Programming Language 1.0</h1>
+
+<p><strong>eval</strong> (<em>express(ive) versatile all-purpose language</em>) is a modern
+general-purpose programming language with a focus on simplicity, safety and
+soundness. <strong>eval</strong> is compiled to <em>JavaScript</em> which makes it a natural choice
+for state of the art projects in the field of web technology.</p>
+
+<ul>
+<li>
+<p><strong>Statically Typed</strong></p>
+
+<p>As opposed to many mainstream languages like Java, C#, C++, etc. for which
+soundness of the type system cannot be proven, eval has a verifiably sound <strong>and</strong> complete
+but yet flexible static type system, which is strictly more powerful than
+Hindley-Milner type systems and features:</p>
+
+<ul>
+<li>Dependent types</li>
+<li>Linear types</li>
+<li>Intersection and Union types</li>
+<li>Existential types</li>
+<li>Gradual typing</li>
+</ul>
+</li>
+<li>
+<p><strong>Object Oriented</strong></p>
+
+<p><strong>eval</strong> is a pure object oriented language, fulfilling all rules of object
+oriented languages as defined by Alan Kay.</p>
+</li>
+<li>
+<p><strong>Functional</strong></p>
+
+<p><strong>eval</strong> is purely functional. Functions are first class citizens. <strong>eval</strong>
+features advanced functional concepts like</p>
+
+<ul>
+<li>Strict and lazy evaluation</li>
+<li>Ad-Hoc polymorphism through type classes</li>
+<li>Automatic derivation of all type classes</li>
+<li>Type signatures can include proof obligations which are checked by the compiler.</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="optimized-language-core" class="anchor" href="#optimized-language-core" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optimized Language Core</h2>
+
+<p>What further differentiates <strong>eval</strong> from other mainstream languages, is that
+we are able to maintain on par expressitivity and computational universality
+while optimizing the language core to eliminate declarations as well as type
+signatures of all kinds.</p>
+
+<h2>
+<a id="standard-library" class="anchor" href="#standard-library" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Standard Library</h2>
+
+<p>The standard library defines four types</p>
+
+<ul>
+<li>
+<code>()</code> (Unit type)</li>
+<li>
+<code>String</code>,</li>
+<li>
+<code>α -&gt; ⁠β</code> (Function type),</li>
+<li>
+<code>IO α</code> (Abstracts away side effects in the style of Haskell <code>IO</code>)</li>
+</ul>
+
+<p>As well as three type classes <code>ApplicativeFunctor</code>, <code>Monad</code>, <code>Monoid</code>.</p>
+
+<p>In addition there exists one object <code>eval</code> of type <code>String -&gt; IO ()</code>. The
+function evaluates the provided String as a javascript program.</p>
+
+<h2>
+<a id="eval-is-bootstrapped" class="anchor" href="#eval-is-bootstrapped" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Eval is bootstrapped!</h2>
+
+<p>The <strong>eval</strong> compiler is completely written in <strong>eval</strong>. Bootstrapping a
+compiler hase several advantages (Source: Wikipedia):</p>
+
+<ul>
+<li>it is a non-trivial test of the language being compiled, and as such is a form of dogfooding.</li>
+<li>compiler developers only need to know the language being compiled.</li>
+<li>compiler development can be done in the higher level language being compiled.</li>
+<li>improvements to the compiler's back-end improve not only general purpose programs but also the compiler itself.</li>
+<li>it is a comprehensive consistency check as it should be able to reproduce its own object code.</li>
+</ul>
+
+<p>Thanks to the
+expressitivity of the <strong>eval</strong> programming language, the compiler consists of
+just <em>0.001 KLOC</em>. See <code>evalc.eval</code> to get an idea of advanced programming in eval.</p>
+
+<h2>
+<a id="hello-world" class="anchor" href="#hello-world" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Hello World</h2>
+
+<p>Here comes the obligatory hello world example:</p>
+
+<pre><code>eval("alert('Hello World!')")
+</code></pre>
+
+<h2>
+<a id="syntax" class="anchor" href="#syntax" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Syntax</h2>
+
+<p><strong>eval</strong> syntax is actually quite simple and can be expressed by the following
+EBNF:</p>
+
+<pre><code>Program = Expression;
+Expression = FunctionCall | Identifier | Literal;
+FunctionCall = Expression, '(', Expression, ')';
+Identifier = 'eval';
+Literal = StringLiteral;
+StringLiteral = '"', { StringCharacter }, '"';
+StringCharacter = AnyCharacterExceptDoubleQuotes | '\', '"';
+</code></pre>
+
+<p>Whitespace is not allowed in <strong>eval</strong> outside of string literals.</p>
+
+<h2>
+<a id="type-checker" class="anchor" href="#type-checker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Type-Checker</h2>
+
+<p>Thanks to the optimized language core it is possible to implement the type
+checking very efficiently in one phase together with the syntax analysis by
+allowing only correctly typed programs to be parsed.</p>
+
+<p>A top level expression has to be of type <code>IO ()</code>. There is only one expression
+which satisfies this type. Namely <code>eval(x)</code> where <code>x</code> is of type <code>String</code>. Only
+string literals are of type <code>String</code> which boils down to the following regular
+expression which does all the necessary name resolutions and type checks:</p>
+
+<pre><code>/eval\("([^"]|\\")*"\)/
+</code></pre>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h2>
+
+<p><strong>eval</strong> is copyright 2016 by Martin Ring</p>
+
+<p>MIT License</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/martinring/eval-lang/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/martinring/eval-lang/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/martinring/eval-lang"></a> is maintained by <a href="https://github.com/martinring">martinring</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
