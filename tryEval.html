@@ -31,14 +31,14 @@
           <h1>Try <strong>eval</strong> online</h1>
           <div>
             <div style="display: flex">
-              <div style="width: 49%; display: inline-block; position: relative">
+              <div style="width: 48%; display: inline-block; position: relative">
                 Eval source code:
-                <textarea id="input" onkeypress="resetOutput()" style='height: 300px; border: none; outline: none; font-family: monospace; width: 100%'>eval("alert('Hello World!')")</textarea>
+                <textarea id="input" onkeypress="resetOutput()" style='padding: 4px; margin: 8px 0; box-shadow: 0 0 8px lightgray;  height: 300px; border: none; outline: none; font-family: monospace; width: 100%'>eval("alert('Hello World!')")</textarea>
                 <button onclick="compile()">compile</button>
               </div>
-              <div style="width: 49%; display; inline-block; position: relative; margin-left: 2%">
+              <div style="width: 48%; display; inline-block; position: relative; margin-left: 4%">
                 Javascript output:
-                <textarea id="output" disabled style="border: none; outline: none; height: 300px; font-family: monospace; width: 100%"></textarea>
+                <textarea id="output" disabled style="background: inherit; padding: 4px; margin: 8px 0; border: none; outline: none; height: 300px; font-family: monospace; width: 100%"></textarea>
                 <button onclick="run()" id="run" disabled>run</button>
               </div>
             </div>
