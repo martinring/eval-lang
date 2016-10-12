@@ -27,16 +27,18 @@ for state of the art projects in the field of web technology.
 
   **eval** is purely functional. Functions are first class citizens. **eval**
   features advanced functional concepts like
-soundness type system
+
   * Strict and lazy evaluation
   * Ad-Hoc polymorphism through type classes
   * Automatic derivation of all type classes
+  * Type signatures can include proof obligations which are checked by the compiler.
 
 ## Optimized Language Core
 
 What further differentiates **eval** from other mainstream languages, is that
 we are able to maintain on par expressitivity and computational universality
-while optimizing the language core to eliminate declarations of all kinds.
+while optimizing the language core to eliminate declarations as well as type
+signatures of all kinds.
 
 ## Standard Library
 
